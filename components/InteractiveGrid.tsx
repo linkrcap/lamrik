@@ -10,7 +10,7 @@ interface MousePosition {
 export function InteractiveGrid() {
   const [mousePosition, setMousePosition] = useState<MousePosition>({ x: 0, y: 0 });
   const [isVisible, setIsVisible] = useState(false);
-  const rafRef = useRef<number>();
+  const rafRef = useRef<number | null>(null);
 
   useEffect(() => {
     setIsVisible(true);
