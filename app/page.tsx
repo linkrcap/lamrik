@@ -37,9 +37,10 @@ import { AnimatedCounter } from "@/components/AnimatedCounter";
 import { ScrollProgress } from "@/components/ScrollProgress";
 import { Footer } from "@/components/Footer";
 import { Logo } from "@/components/Logo";
+import type { Variants } from "framer-motion";
 
-// Animation variants
-const staggerContainer = {
+// Animation variants with proper typing
+const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -47,39 +48,39 @@ const staggerContainer = {
   },
 };
 
-const fadeInUp = {
+const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 30 },
   visible: { 
     opacity: 1, 
     y: 0, 
-    transition: { duration: 0.6, ease: "easeOut" } 
+    transition: { duration: 0.6, type: "tween", ease: "easeOut" } 
   },
 };
 
-const fadeInLeft = {
+const fadeInLeft: Variants = {
   hidden: { opacity: 0, x: -30 },
   visible: { 
     opacity: 1, 
     x: 0, 
-    transition: { duration: 0.6, ease: "easeOut" } 
+    transition: { duration: 0.6, type: "tween", ease: "easeOut" } 
   },
 };
 
-const fadeInRight = {
+const fadeInRight: Variants = {
   hidden: { opacity: 0, x: 30 },
   visible: { 
     opacity: 1, 
     x: 0, 
-    transition: { duration: 0.6, ease: "easeOut" } 
+    transition: { duration: 0.6, type: "tween", ease: "easeOut" } 
   },
 };
 
-const scaleIn = {
+const scaleIn: Variants = {
   hidden: { opacity: 0, scale: 0.9 },
   visible: { 
     opacity: 1, 
     scale: 1, 
-    transition: { duration: 0.5, ease: "easeOut" } 
+    transition: { duration: 0.5, type: "tween", ease: "easeOut" } 
   },
 };
 
