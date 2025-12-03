@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+  <!-- Lamrik Labs Symbol: Geometric L with ecosystem grid -->
+  <!-- The design represents: structure, digital ecosystems, innovation -->
+  
+  <!-- Main L shape - bold, geometric -->
+  <path 
+    d="M8 8V40H40V34H14V8H8Z" 
+    fill="currentColor"
+  />
+  
+  <!-- Ecosystem grid elements - representing network/platform -->
+  <rect x="22" y="8" width="8" height="8" fill="currentColor" opacity="0.6"/>
+  <rect x="32" y="8" width="8" height="8" fill="currentColor" opacity="0.3"/>
+  <rect x="22" y="18" width="8" height="8" fill="currentColor" opacity="0.3"/>
+</svg>
+

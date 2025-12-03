@@ -1,0 +1,16 @@
+# Robots.txt for Lamrik Labs
+# https://lamrik.com
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://lamrik.com/sitemap.xml
+
+# Crawl-delay (optional, respected by some bots)
+Crawl-delay: 1
+
+# Disallow admin/api routes when added
+# Disallow: /api/
+# Disallow: /admin/
+

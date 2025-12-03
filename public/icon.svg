@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <!-- Lamrik Labs Icon: 512x512 for PWA/App icons -->
+  
+  <!-- Background with subtle rounded corners -->
+  <rect width="512" height="512" rx="96" fill="#0D1117"/>
+  
+  <!-- Main L shape -->
+  <path 
+    d="M112 96H160V368H400V416H112V96Z" 
+    fill="#FFFFFF"
+  />
+  
+  <!-- Ecosystem grid elements -->
+  <rect x="208" y="96" width="80" height="80" fill="#C89F59"/>
+  <rect x="304" y="96" width="80" height="80" fill="#FFFFFF" opacity="0.5"/>
+  <rect x="208" y="192" width="80" height="80" fill="#FFFFFF" opacity="0.3"/>
+</svg>
