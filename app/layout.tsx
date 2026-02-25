@@ -16,22 +16,25 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://lamrik.com"),
   title: {
-    default: "Lamrik Labs — Technology Holding Company & Product Studio",
+    default: "AI Business Operating System India | CRM & Automation Platform | Lamrik Labs",
     template: "%s | Lamrik Labs",
   },
   description:
-    "Lamrik Labs Pvt Ltd is a technology holding company headquartered in Hyderabad, India. We design, incubate, and scale digital platforms for creators, communities, and institutions.",
+    "Lamrik Business OS™ is an AI-powered CRM, WhatsApp automation, AI voice agent and analytics infrastructure built for real estate, healthcare and D2C businesses in India.",
   keywords: [
     "Lamrik Labs",
-    "technology holding company",
+    "business operating system India",
+    "CRM automation platform",
+    "real estate CRM India",
+    "healthcare CRM software India",
+    "D2C CRM platform",
+    "WhatsApp automation platform",
+    "AI voice agents for business",
+    "Linkrcap",
     "product studio",
     "digital platforms",
     "Hyderabad",
     "India",
-    "Linkrcap",
-    "startup incubation",
-    "platform development",
-    "digital ecosystems",
   ],
   authors: [{ name: "Lamrik Labs Pvt Ltd" }],
   creator: "Lamrik Labs",
@@ -52,23 +55,23 @@ export const metadata: Metadata = {
     locale: "en_IN",
     url: "https://lamrik.com",
     siteName: "Lamrik Labs",
-    title: "Lamrik Labs — Technology Holding Company & Product Studio",
+    title: "AI Business Operating System India | CRM & Automation Platform | Lamrik Labs",
     description:
-      "We design, incubate, and scale digital platforms for creators, communities, and institutions.",
+      "Lamrik Business OS™ is an AI-powered CRM, WhatsApp automation, AI voice agent and analytics infrastructure built for real estate, healthcare and D2C businesses in India.",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Lamrik Labs — Designing the Digital Platforms of Tomorrow",
+        alt: "Lamrik Business OS™ — AI-Powered CRM & Automation Platform for India",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Lamrik Labs — Technology Holding Company & Product Studio",
+    title: "AI Business Operating System India | CRM & Automation Platform | Lamrik Labs",
     description:
-      "We design, incubate, and scale digital platforms for creators, communities, and institutions.",
+      "Lamrik Business OS™ is an AI-powered CRM, WhatsApp automation, AI voice agent and analytics infrastructure built for real estate, healthcare and D2C businesses in India.",
     images: ["/og-image.png"],
     creator: "@lamriklabs",
   },
@@ -130,11 +133,48 @@ const websiteJsonLd = {
   "@type": "WebSite",
   name: "Lamrik Labs",
   url: "https://lamrik.com",
-  description: "Technology Holding Company & Product Studio",
+  description: "AI Systems & Platform Company — Product Studio",
   publisher: {
     "@type": "Organization",
     name: "Lamrik Labs Pvt Ltd",
   },
+};
+
+// JSON-LD for SoftwareApplication (Lamrik Business OS)
+const softwareAppJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "Lamrik Business OS™",
+  applicationCategory: "BusinessApplication",
+  operatingSystem: "Web",
+  description:
+    "AI-powered CRM, lead capture, WhatsApp automation, AI voice agent and analytics platform built for real estate, healthcare and D2C businesses in India.",
+  offers: {
+    "@type": "Offer",
+    category: "CRM & Automation Platform",
+  },
+  creator: {
+    "@type": "Organization",
+    name: "Lamrik Labs Pvt Ltd",
+  },
+};
+
+// JSON-LD for Service (Business Automation Deployment)
+const serviceJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  serviceType: "Business Automation & CRM Deployment",
+  provider: {
+    "@type": "Organization",
+    name: "Lamrik Labs Pvt Ltd",
+    url: "https://lamrik.com",
+  },
+  areaServed: {
+    "@type": "Country",
+    name: "India",
+  },
+  description:
+    "End-to-end deployment of AI-powered business operating systems including CRM, WhatsApp automation, AI voice agents, and analytics dashboards.",
 };
 
 export default function RootLayout({
@@ -153,6 +193,14 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareAppJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
         />
       </head>
       <body

@@ -7,15 +7,16 @@ import { Logo } from "./Logo";
 
 const footerLinks = {
   company: [
-    { label: "About", href: "/#about" },
-    { label: "Our Approach", href: "/#how-we-build" },
-    { label: "Vision", href: "/#vision" },
+    { label: "Architecture", href: "/#architecture" },
+    { label: "Modules", href: "/#modules" },
+    { label: "Industries", href: "/#industries" },
+    { label: "Deployment", href: "/#deployment" },
   ],
   platform: [
     { label: "Linkrcap", href: "https://www.linkrcap.com/", external: true },
   ],
   connect: [
-    { label: "Partner with Us", href: "/#partner" },
+    { label: "Strategy Consultation", href: "/#cta" },
     { label: "contact@lamrik.com", href: "mailto:contact@lamrik.com" },
   ],
   legal: [
@@ -47,7 +48,7 @@ export function Footer() {
                 <Logo size="md" />
               </Link>
               <p className="mb-4 mt-3 max-w-xs text-sm text-theme-muted">
-                Technology Holding Company & Product Studio. We design, incubate, and scale digital platforms.
+                AI Systems & Platform Company. We build AI-powered business systems and platforms, including Linkrcap and Lamrik Business OS™.
               </p>
               <div className="flex items-center gap-2 text-sm text-theme-muted">
                 <MapPin className="h-4 w-4 text-theme-gold" />
@@ -105,7 +106,7 @@ export function Footer() {
                 </li>
               ))}
             </ul>
-            
+
             {/* Social Links */}
             <div className="mt-6 flex items-center gap-3">
               {socialLinks.map((social) => (
@@ -162,7 +163,7 @@ export function Footer() {
               CIN: Applied, awaiting issuance.
             </p>
           </div>
-          
+
           <div className="flex items-center gap-6 text-sm text-theme-muted">
             {footerLinks.legal.map((link) => (
               <Link

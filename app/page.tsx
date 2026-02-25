@@ -1,31 +1,36 @@
 "use client";
 
-import { useState, FormEvent, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import {
-  Compass,
   Layers,
   Rocket,
   Target,
-  Lightbulb,
   Cpu,
   Globe,
   TrendingUp,
   ArrowRight,
   Menu,
   X,
-  Mail,
-  MapPin,
-  Building2,
   ChevronRight,
   Sparkles,
   Users,
-  Blocks,
   Zap,
   ArrowUpRight,
-  Loader2,
-  CheckCircle,
-  AlertCircle,
+  MessageSquare,
+  BarChart3,
+  Phone,
+  Search,
+  Shield,
+  Building2,
+  Heart,
+  ShoppingBag,
+  CheckCircle2,
+  Circle,
+  ClipboardList,
+  Puzzle,
+  Settings,
+  LineChart,
 } from "lucide-react";
 
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -33,13 +38,13 @@ import { InteractiveGrid } from "@/components/InteractiveGrid";
 import { CursorFollower } from "@/components/CursorFollower";
 import { TiltCard } from "@/components/TiltCard";
 import { MagneticButton } from "@/components/MagneticButton";
-import { AnimatedCounter } from "@/components/AnimatedCounter";
 import { ScrollProgress } from "@/components/ScrollProgress";
 import { Footer } from "@/components/Footer";
 import { Logo } from "@/components/Logo";
 import type { Variants } from "framer-motion";
 
-// Animation variants with proper typing
+// ─── Animation Variants ────────────────────────────────────────────────────────
+
 const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   visible: {
@@ -50,41 +55,42 @@ const staggerContainer: Variants = {
 
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 30 },
-  visible: { 
-    opacity: 1, 
-    y: 0, 
-    transition: { duration: 0.6, type: "tween", ease: "easeOut" } 
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, type: "tween", ease: "easeOut" },
   },
 };
 
 const fadeInLeft: Variants = {
   hidden: { opacity: 0, x: -30 },
-  visible: { 
-    opacity: 1, 
-    x: 0, 
-    transition: { duration: 0.6, type: "tween", ease: "easeOut" } 
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.6, type: "tween", ease: "easeOut" },
   },
 };
 
 const fadeInRight: Variants = {
   hidden: { opacity: 0, x: 30 },
-  visible: { 
-    opacity: 1, 
-    x: 0, 
-    transition: { duration: 0.6, type: "tween", ease: "easeOut" } 
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.6, type: "tween", ease: "easeOut" },
   },
 };
 
 const scaleIn: Variants = {
   hidden: { opacity: 0, scale: 0.9 },
-  visible: { 
-    opacity: 1, 
-    scale: 1, 
-    transition: { duration: 0.5, type: "tween", ease: "easeOut" } 
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 0.5, type: "tween", ease: "easeOut" },
   },
 };
 
-// Animated section wrapper
+// ─── Animated Section Wrapper ──────────────────────────────────────────────────
+
 function AnimatedSection({
   children,
   className = "",
@@ -111,10 +117,11 @@ function AnimatedSection({
   );
 }
 
-// Word-by-word animated text
+// ─── Animated Headline ─────────────────────────────────────────────────────────
+
 function AnimatedHeadline({ text }: { text: string }) {
   const words = text.split(" ");
-  
+
   return (
     <span className="inline">
       {words.map((word, i) => (
@@ -136,7 +143,161 @@ function AnimatedHeadline({ text }: { text: string }) {
   );
 }
 
-// Pillar data
+// ─── Data ──────────────────────────────────────────────────────────────────────
+
+const navLinks = [
+  { href: "#architecture", label: "Architecture" },
+  { href: "#modules", label: "Modules" },
+  { href: "#industries", label: "Industries" },
+  { href: "#linkrcap", label: "Linkrcap" },
+  { href: "#deployment", label: "Deployment" },
+];
+
+const painPoints = [
+  { icon: Search, label: "Distributed lead sources" },
+  { icon: Users, label: "Manual follow-ups" },
+  { icon: Layers, label: "CRM underutilization" },
+  { icon: MessageSquare, label: "Communication silos" },
+  { icon: BarChart3, label: "Limited analytics" },
+  { icon: Target, label: "Reactive decisions" },
+];
+
+const capabilities = [
+  { icon: Search, label: "Centralized Lead Capture" },
+  { icon: Shield, label: "Intelligent CRM Framework" },
+  { icon: MessageSquare, label: "WhatsApp Automation Layer" },
+  { icon: Phone, label: "AI Voice Interaction Systems" },
+  { icon: LineChart, label: "Revenue & Performance Analytics" },
+  { icon: Users, label: "Scalable Multi-User Infrastructure" },
+];
+
+const coreModules = [
+  {
+    icon: Search,
+    title: "Lead Intelligence Layer",
+    features: [
+      "Meta & Google Ads integration",
+      "Website form tracking",
+      "WhatsApp lead capture",
+      "Automated lead routing",
+    ],
+  },
+  {
+    icon: Shield,
+    title: "Relationship Management Layer",
+    features: [
+      "Pipeline management",
+      "Opportunity tracking",
+      "Customer lifecycle management",
+      "Multi-user access controls",
+    ],
+  },
+  {
+    icon: MessageSquare,
+    title: "Communication Automation Layer",
+    features: [
+      "Automated WhatsApp responses",
+      "Drip campaigns",
+      "Appointment reminders",
+      "Two-way intelligent chat",
+    ],
+  },
+  {
+    icon: Phone,
+    title: "AI Voice Interaction Layer",
+    features: [
+      "Automated follow-up calls",
+      "Lead qualification",
+      "Appointment confirmations",
+      "After-hours response systems",
+    ],
+  },
+  {
+    icon: BarChart3,
+    title: "Analytics & Insight Layer",
+    features: [
+      "Conversion tracking",
+      "Lead source ROI",
+      "Team productivity monitoring",
+      "Revenue forecasting",
+    ],
+  },
+];
+
+const industryData = [
+  {
+    id: "real-estate",
+    label: "Real Estate & Builders",
+    icon: Building2,
+    content: [
+      "Centralized lead management across channels",
+      "Site visit scheduling automation",
+      "Channel partner tracking & attribution",
+      "AI-powered follow-up calling",
+      "Campaign ROI monitoring & diagnostics",
+    ],
+    seoLine:
+      "Purpose-built CRM and automation infrastructure for real estate agencies and builders across India.",
+  },
+  {
+    id: "healthcare",
+    label: "Healthcare Clinics",
+    icon: Heart,
+    content: [
+      "Patient lead tracking & intake automation",
+      "Appointment scheduling & reminders",
+      "Treatment pipeline visibility",
+      "AI-driven patient communication",
+      "Multi-location clinic management",
+    ],
+    seoLine:
+      "Healthcare CRM software and clinic automation systems designed for medical practices in India.",
+  },
+  {
+    id: "d2c",
+    label: "D2C & Consumer Brands",
+    icon: ShoppingBag,
+    content: [
+      "Customer lifecycle automation",
+      "WhatsApp commerce workflows",
+      "Abandoned cart recovery systems",
+      "AI-assisted customer support",
+      "Revenue tracking dashboards",
+    ],
+    seoLine:
+      "D2C CRM platform and ecommerce automation system with WhatsApp integration for consumer brands.",
+  },
+];
+
+const deploymentPhases = [
+  {
+    phase: "Phase 01",
+    title: "Operational Audit",
+    description:
+      "We map your lead flow, sales cycle, communication stack, and data systems to identify friction points.",
+  },
+  {
+    phase: "Phase 02",
+    title: "Architecture Blueprint",
+    description:
+      "A customized system architecture is designed, aligned with your revenue goals and operational workflow.",
+  },
+  {
+    phase: "Phase 03",
+    title: "System Deployment",
+    description:
+      "CRM, automation layers, AI agents, and dashboards are deployed as a fully integrated infrastructure.",
+  },
+  {
+    phase: "Phase 04",
+    title: "Continuous Optimization",
+    description:
+      "Performance analysis, iterative improvement, and scaling support to ensure sustained growth.",
+  },
+];
+
+// ─── Pillars (How We Build) ────────────────────────────────────────────────────
+
 const pillars = [
   {
     icon: Target,
@@ -164,39 +325,23 @@ const pillars = [
   },
 ];
 
-// Focus areas
+// ─── LinkrCap / Vision Data ────────────────────────────────────────────────────
+
 const focusAreas = [
   { icon: Sparkles, label: "Creator economy tools" },
   { icon: Users, label: "Community platforms" },
-  { icon: Blocks, label: "SaaS products" },
+  { icon: Layers, label: "SaaS products" },
   { icon: Zap, label: "Generative AI tools" },
 ];
 
-// Navigation
-const navLinks = [
-  { href: "#about", label: "About" },
-  { href: "#how-we-build", label: "How We Build" },
-  { href: "#linkrcap", label: "Linkrcap" },
-  { href: "#vision", label: "Vision" },
-  { href: "#partner", label: "Partner" },
-];
-
-// Web3Forms access key - get yours free at https://web3forms.com
-const WEB3FORMS_ACCESS_KEY = "YOUR_ACCESS_KEY_HERE"; // Replace with your actual key
+// ─── Component ─────────────────────────────────────────────────────────────────
 
 export default function Home() {
-  const [formData, setFormData] = useState({
-    name: "",
-    organization: "",
-    email: "",
-    message: "",
-  });
-  const [formState, setFormState] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
   const [isScrolled, setIsScrolled] = useState(false);
+  const [activeIndustry, setActiveIndustry] = useState("real-estate");
 
-  // Track scroll and active section
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -218,51 +363,14 @@ export default function Home() {
     });
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    
+
     return () => {
       observer.disconnect();
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-    setFormState("submitting");
-
-    try {
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
-          access_key: WEB3FORMS_ACCESS_KEY,
-          from_name: "Lamrik Labs Website",
-          subject: `Partnership Inquiry from ${formData.name}`,
-          name: formData.name,
-          email: formData.email,
-          organization: formData.organization,
-          message: formData.message,
-        }),
-      });
-
-      const result = await response.json();
-
-      if (result.success) {
-        setFormState("success");
-        setFormData({ name: "", organization: "", email: "", message: "" });
-        // Reset form state after 5 seconds
-        setTimeout(() => setFormState("idle"), 5000);
-      } else {
-        setFormState("error");
-        setTimeout(() => setFormState("idle"), 5000);
-      }
-    } catch {
-      setFormState("error");
-      setTimeout(() => setFormState("idle"), 5000);
-    }
-  };
+  const currentIndustry = industryData.find((i) => i.id === activeIndustry)!;
 
   return (
     <div className="min-h-screen bg-theme-primary text-theme-primary">
@@ -272,16 +380,26 @@ export default function Home() {
       <ScrollProgress />
 
       {/* Floating Shapes */}
-      <div className="floating-shape shape-hexagon" style={{ top: "15%", right: "10%", animationDelay: "0s" }} />
-      <div className="floating-shape shape-circle" style={{ top: "60%", left: "5%", animationDelay: "-2s" }} />
-      <div className="floating-shape shape-square" style={{ bottom: "20%", right: "15%", animationDelay: "-4s" }} />
+      <div
+        className="floating-shape shape-hexagon"
+        style={{ top: "15%", right: "10%", animationDelay: "0s" }}
+      />
+      <div
+        className="floating-shape shape-circle"
+        style={{ top: "60%", left: "5%", animationDelay: "-2s" }}
+      />
+      <div
+        className="floating-shape shape-square"
+        style={{ bottom: "20%", right: "15%", animationDelay: "-4s" }}
+      />
 
-      {/* Header */}
-      <header className={`sticky top-0 z-50 border-b transition-all duration-300 ${
-        isScrolled 
-          ? "header-blur border-theme-primary shadow-lg" 
-          : "border-transparent bg-transparent"
-      }`}>
+      {/* ─── Header ────────────────────────────────────────────────────────── */}
+      <header
+        className={`sticky top-0 z-50 border-b transition-all duration-300 ${isScrolled
+            ? "header-blur border-theme-primary shadow-lg"
+            : "border-transparent bg-transparent"
+          }`}
+      >
         <div className="mx-auto flex h-16 max-w-[1200px] items-center justify-between px-4 sm:px-6 lg:h-20">
           <motion.a
             href="#top"
@@ -301,9 +419,8 @@ export default function Home() {
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: i * 0.05 }}
-                className={`link-hover relative px-4 py-2 text-sm font-medium ${
-                  activeSection === link.href.slice(1) ? "active" : ""
-                }`}
+                className={`link-hover relative px-4 py-2 text-sm font-medium ${activeSection === link.href.slice(1) ? "active" : ""
+                  }`}
               >
                 {link.label}
               </motion.a>
@@ -322,7 +439,11 @@ export default function Home() {
               whileTap={{ scale: 0.95 }}
               aria-label="Toggle menu"
             >
-              {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              {mobileMenuOpen ? (
+                <X className="h-5 w-5" />
+              ) : (
+                <Menu className="h-5 w-5" />
+              )}
             </motion.button>
           </div>
         </div>
@@ -355,163 +476,258 @@ export default function Home() {
       </header>
 
       <main>
-        {/* Hero Section */}
-        <section id="top" className="relative overflow-hidden px-4 py-16 sm:px-6 md:py-24 lg:py-32">
-          <div className="mx-auto grid max-w-[1200px] items-center gap-12 lg:grid-cols-[1.4fr_1fr] lg:gap-16">
+        {/* ─── SECTION 1: Hero ─────────────────────────────────────────────── */}
+        <section
+          id="top"
+          className="relative overflow-hidden px-4 py-16 sm:px-6 md:py-24 lg:py-32"
+        >
+          <div className="hero-gradient-mesh" />
+          <div className="relative z-10 mx-auto max-w-[1200px]">
             <motion.div
               initial="hidden"
               animate="visible"
               variants={staggerContainer}
+              className="mx-auto max-w-3xl text-center"
             >
               <motion.p
-                variants={fadeInLeft}
+                variants={fadeInUp}
                 className="mb-4 text-xs uppercase tracking-[0.2em] text-theme-muted sm:text-sm"
               >
-                Technology Holding Company &amp; Product Studio
+                Lamrik Labs Product Studio
               </motion.p>
-              
+
               <h1 className="mb-6 text-3xl font-semibold leading-tight tracking-tight text-theme-primary sm:text-4xl md:text-5xl lg:text-[3.25rem]">
-                <AnimatedHeadline text="Lamrik Labs — Designing the Digital Platforms of Tomorrow" />
-          </h1>
-              
+                <AnimatedHeadline text="AI-Powered Business Operating System for High-Growth Companies in India" />
+              </h1>
+
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1.2, duration: 0.5 }}
-                className="mb-8 max-w-xl text-base leading-relaxed text-theme-muted sm:text-lg"
+                className="mb-4 text-base leading-relaxed text-theme-muted sm:text-lg"
               >
-                A technology holding company and product studio headquartered in
-                Hyderabad, India. We build, incubate, and scale digital ecosystems
-                for the future.
+                Unified CRM, WhatsApp automation, AI voice agents and analytics
+                infrastructure for scalable enterprises.
               </motion.p>
-              
-              <motion.div
+
+              <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1.4, duration: 0.5 }}
-                className="flex flex-col gap-4 sm:flex-row"
+                className="mb-8 text-sm text-theme-subtle"
               >
-                <MagneticButton href="#partner" variant="primary">
-                  Partner with Lamrik Labs
+                Built by the team behind{" "}
+                <a
+                  href="https://www.linkrcap.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-theme-gold transition-colors hover:text-theme-primary"
+                >
+                  Linkrcap
+                </a>
+                .
+              </motion.p>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.6, duration: 0.5 }}
+                className="flex flex-col items-center justify-center gap-4 sm:flex-row"
+              >
+                <MagneticButton href="#deployment" variant="primary">
+                  Schedule Strategy Consultation
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </MagneticButton>
-                <MagneticButton href="https://www.linkrcap.com/" variant="secondary">
-                  Explore Linkrcap
+                <MagneticButton href="#architecture" variant="secondary">
+                  Explore Architecture
                   <ArrowUpRight className="h-4 w-4" />
                 </MagneticButton>
               </motion.div>
             </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 60, rotateY: -15 }}
-              animate={{ opacity: 1, x: 0, rotateY: 0 }}
-              transition={{ duration: 0.8, delay: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="relative"
-            >
-              <TiltCard className="ml-auto w-full max-w-sm">
-                <div className="card-base card-hover p-6 md:p-8">
-                  <div className="mb-4 flex items-center gap-3">
-                    <div className="icon-container">
-                      <Rocket className="h-5 w-5" />
-                    </div>
-                    <div>
-                      <p className="text-xs uppercase tracking-[0.2em] text-theme-muted">
-                        Flagship Platform
-                      </p>
-                      <h3 className="text-xl font-semibold text-theme-primary">
-                        Linkrcap
-                      </h3>
-                    </div>
-                  </div>
-                  <p className="mb-5 text-sm leading-relaxed text-theme-muted">
-                    Transform ideas into market-ready products through guided
-                    processes.
-                  </p>
-                  <div className="border-t border-theme-primary pt-5">
-                    <ul className="space-y-3 text-sm text-theme-muted">
-                      {["Innovation sprints", "Prototype building", "Structured incubation pathways"].map(
-                        (item, i) => (
-                          <motion.li
-                            key={i}
-                            initial={{ opacity: 0, x: -10 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: 1 + i * 0.1 }}
-                            className="flex items-center gap-3"
-                          >
-                            <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[var(--accent-gold-light)]">
-                              <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent-gold)]" />
-                            </span>
-                            {item}
-                          </motion.li>
-                        )
-                      )}
-                    </ul>
-                  </div>
-                </div>
-              </TiltCard>
-            </motion.div>
           </div>
         </section>
 
-        {/* About Section */}
-        <AnimatedSection id="about" className="px-4 py-20 sm:px-6 md:py-28">
-          <div className="mx-auto max-w-[900px]">
+        {/* ─── SECTION 2: Context (Professional Tone) ──────────────────────── */}
+        <AnimatedSection
+          id="context"
+          className="bg-theme-secondary px-4 py-20 sm:px-6 md:py-28"
+        >
+          <div className="mx-auto max-w-[1000px]">
             <motion.p
               variants={fadeInUp}
               className="mb-2 text-xs uppercase tracking-[0.2em] text-theme-muted"
             >
-              About
+              The Challenge
             </motion.p>
             <motion.h2
               variants={fadeInUp}
               className="mb-6 text-2xl font-semibold text-theme-primary sm:text-3xl md:text-4xl"
             >
-              About Lamrik Labs
+              Growth Requires Operational Intelligence
             </motion.h2>
+            <motion.p
+              variants={fadeInUp}
+              className="mb-12 max-w-2xl text-base leading-relaxed text-theme-muted sm:text-lg"
+            >
+              As businesses scale beyond early-stage operations, fragmentation
+              becomes the primary growth constraint. Lead sources multiply,
+              communication becomes inconsistent, and decision-making shifts from
+              proactive to reactive. The underlying systems were never designed
+              to operate at scale.
+            </motion.p>
+
+            <motion.div
+              variants={staggerContainer}
+              className="mb-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
+            >
+              {painPoints.map((point, i) => (
+                <motion.div
+                  key={i}
+                  variants={fadeInUp}
+                  className="flex items-center gap-4 rounded-xl border border-theme-primary bg-theme-card p-4 transition-colors hover:border-theme-secondary"
+                >
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-theme-secondary">
+                    <point.icon className="h-5 w-5 text-theme-muted" />
+                  </div>
+                  <span className="text-sm font-medium text-theme-secondary">
+                    {point.label}
+                  </span>
+                </motion.div>
+              ))}
+            </motion.div>
+
             <motion.div
               variants={fadeInUp}
-              className="mb-12 space-y-4 text-base leading-relaxed text-theme-muted sm:text-lg"
+              className="rounded-2xl border border-theme-gold bg-[var(--accent-gold-light)] px-6 py-5"
             >
-              <p>
-                Lamrik Labs Pvt Ltd is a technology holding company headquartered
-                in Hyderabad, India.
-              </p>
-              <p>
-                We design, incubate, and accelerate digital platforms that empower
-                communities and organizations to unlock new forms of value.
-              </p>
-              <p>
-                Founded in 2025, we operate with a long-term mindset: build
-                foundational products, scale sustainably, and create ecosystem-wide
-                impact.
+              <p className="text-sm font-medium leading-relaxed text-theme-primary sm:text-base">
+                Lamrik Business OS™ unifies these layers into a single,
+                intelligent operating architecture — purpose-built for
+                lead-driven, revenue-focused businesses.
               </p>
             </motion.div>
-            
+          </div>
+        </AnimatedSection>
+
+        {/* ─── SECTION 3: What Is Lamrik Business OS ───────────────────────── */}
+        <AnimatedSection
+          id="architecture"
+          className="px-4 py-20 sm:px-6 md:py-28"
+        >
+          <div className="mx-auto max-w-[1200px]">
+            <div className="grid items-start gap-12 lg:grid-cols-2 lg:gap-16">
+              <div>
+                <motion.div variants={fadeInUp} className="badge-gold mb-4">
+                  <Cpu className="h-4 w-4" />
+                  Product Studio
+                </motion.div>
+
+                <motion.h2
+                  variants={fadeInUp}
+                  className="mb-4 text-2xl font-semibold text-theme-primary sm:text-3xl md:text-4xl"
+                >
+                  A Vertical-Ready Operational Architecture
+                </motion.h2>
+
+                <motion.p
+                  variants={fadeInUp}
+                  className="mb-8 text-base leading-relaxed text-theme-muted sm:text-lg"
+                >
+                  Lamrik Business OS™ is a centralized, AI-enabled operating
+                  system designed to capture every lead, structure every
+                  follow-up, automate communication, track every opportunity,
+                  monitor team performance, and deliver real-time intelligence.
+                </motion.p>
+
+                <motion.p
+                  variants={fadeInUp}
+                  className="text-sm font-medium italic text-theme-subtle"
+                >
+                  Not off-the-shelf software. Engineered infrastructure.
+                </motion.p>
+              </div>
+
+              <motion.div variants={fadeInRight}>
+                <TiltCard>
+                  <div className="card-base card-hover p-6 md:p-8">
+                    <motion.ul
+                      variants={staggerContainer}
+                      className="space-y-4"
+                    >
+                      {capabilities.map((cap, i) => (
+                        <motion.li
+                          key={i}
+                          variants={fadeInUp}
+                          className="flex items-center gap-4"
+                        >
+                          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[var(--accent-gold-light)]">
+                            <cap.icon className="h-5 w-5 text-theme-gold" />
+                          </div>
+                          <span className="text-sm font-medium text-theme-primary sm:text-base">
+                            {cap.label}
+                          </span>
+                        </motion.li>
+                      ))}
+                    </motion.ul>
+                  </div>
+                </TiltCard>
+              </motion.div>
+            </div>
+          </div>
+        </AnimatedSection>
+
+        {/* ─── SECTION 4: Core Modules ─────────────────────────────────────── */}
+        <AnimatedSection
+          id="modules"
+          className="bg-theme-secondary px-4 py-20 sm:px-6 md:py-28"
+        >
+          <div className="mx-auto max-w-[1200px]">
+            <motion.p
+              variants={fadeInUp}
+              className="mb-2 text-xs uppercase tracking-[0.2em] text-theme-muted"
+            >
+              Core System Modules
+            </motion.p>
+            <motion.h2
+              variants={fadeInUp}
+              className="mb-4 text-2xl font-semibold text-theme-primary sm:text-3xl md:text-4xl"
+            >
+              Five Integrated Layers of Operational Control
+            </motion.h2>
+            <motion.p
+              variants={fadeInUp}
+              className="mb-12 max-w-2xl text-base leading-relaxed text-theme-muted sm:text-lg"
+            >
+              Each module operates independently, yet functions as part of a
+              unified intelligence layer — giving your team complete visibility
+              and control.
+            </motion.p>
+
             <motion.div
               variants={staggerContainer}
               className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
             >
-              {[
-                { icon: Building2, label: "Founded", value: "2025" },
-                { icon: MapPin, label: "Headquarters", value: "Hyderabad, India" },
-                { icon: Layers, label: "Focus", value: "Digital Platforms" },
-              ].map((stat, i) => (
+              {coreModules.map((mod, i) => (
                 <motion.div key={i} variants={scaleIn}>
-                  <TiltCard>
-                    <div className="card-base card-hover p-5">
-                      <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-theme-secondary">
-                        <stat.icon className="h-5 w-5 text-theme-gold" />
+                  <TiltCard className="h-full">
+                    <div className="card-base module-card flex h-full flex-col p-6">
+                      <div className="icon-container mb-4">
+                        <mod.icon className="h-5 w-5" />
                       </div>
-                      <p className="mb-1 text-xs uppercase tracking-widest text-theme-muted">
-                        {stat.label}
-                      </p>
-                      <p className="text-lg font-medium text-theme-primary">
-                        {stat.label === "Founded" ? (
-                          <AnimatedCounter value={2025} />
-                        ) : (
-                          stat.value
-                        )}
-                      </p>
+                      <h3 className="mb-3 text-lg font-semibold text-theme-primary">
+                        {mod.title}
+                      </h3>
+                      <ul className="space-y-2">
+                        {mod.features.map((feat, j) => (
+                          <li
+                            key={j}
+                            className="flex items-start gap-2 text-sm text-theme-muted"
+                          >
+                            <ChevronRight className="mt-0.5 h-3.5 w-3.5 shrink-0 text-theme-gold" />
+                            {feat}
+                          </li>
+                        ))}
+                      </ul>
                     </div>
                   </TiltCard>
                 </motion.div>
@@ -520,12 +736,101 @@ export default function Home() {
           </div>
         </AnimatedSection>
 
-        {/* How We Build Section */}
+        {/* ─── SECTION 5: Industry Solutions (Tabbed) ──────────────────────── */}
         <AnimatedSection
-          id="how-we-build"
+          id="industries"
+          className="px-4 py-20 sm:px-6 md:py-28"
+        >
+          <div className="mx-auto max-w-[1000px]">
+            <motion.p
+              variants={fadeInUp}
+              className="mb-2 text-xs uppercase tracking-[0.2em] text-theme-muted"
+            >
+              Industry Solutions
+            </motion.p>
+            <motion.h2
+              variants={fadeInUp}
+              className="mb-4 text-2xl font-semibold text-theme-primary sm:text-3xl md:text-4xl"
+            >
+              Built for Lead-Driven Businesses
+            </motion.h2>
+            <motion.p
+              variants={fadeInUp}
+              className="mb-8 max-w-2xl text-base leading-relaxed text-theme-muted sm:text-lg"
+            >
+              Lamrik Business OS™ can be configured for any business that
+              depends on leads, sales teams, follow-ups, and customer retention.
+            </motion.p>
+
+            {/* Tabs */}
+            <motion.div variants={fadeInUp} className="industry-tabs">
+              {industryData.map((industry) => (
+                <button
+                  key={industry.id}
+                  onClick={() => setActiveIndustry(industry.id)}
+                  className={`industry-tab ${activeIndustry === industry.id ? "active" : ""
+                    }`}
+                >
+                  <span className="flex items-center gap-2">
+                    <industry.icon className="h-4 w-4" />
+                    {industry.label}
+                  </span>
+                </button>
+              ))}
+            </motion.div>
+
+            {/* Tab Content */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeIndustry}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.25 }}
+              >
+                <TiltCard>
+                  <div className="card-base p-6 md:p-8">
+                    <div className="mb-4 flex items-center gap-3">
+                      <div className="icon-container">
+                        <currentIndustry.icon className="h-5 w-5" />
+                      </div>
+                      <h3 className="text-xl font-semibold text-theme-primary">
+                        {currentIndustry.label}
+                      </h3>
+                    </div>
+                    <ul className="mb-6 space-y-3">
+                      {currentIndustry.content.map((item, i) => (
+                        <li key={i} className="flex items-start gap-3">
+                          <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-theme-gold" />
+                          <span className="text-sm text-theme-muted">
+                            {item}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                    <p className="text-xs leading-relaxed text-theme-subtle">
+                      {currentIndustry.seoLine}
+                    </p>
+                  </div>
+                </TiltCard>
+              </motion.div>
+            </AnimatePresence>
+
+            <motion.p
+              variants={fadeInUp}
+              className="mt-6 text-center text-sm text-theme-subtle"
+            >
+              Additional vertical deployments available upon request.
+            </motion.p>
+          </div>
+        </AnimatedSection>
+
+        {/* ─── SECTION 6: Why Lamrik ───────────────────────────────────────── */}
+        <AnimatedSection
+          id="why-lamrik"
           className="bg-theme-secondary px-4 py-20 sm:px-6 md:py-28"
         >
-          <div className="mx-auto max-w-[1200px]">
+          <div className="mx-auto max-w-[1000px]">
             <motion.p
               variants={fadeInUp}
               className="mb-2 text-xs uppercase tracking-[0.2em] text-theme-muted"
@@ -536,43 +841,76 @@ export default function Home() {
               variants={fadeInUp}
               className="mb-4 text-2xl font-semibold text-theme-primary sm:text-3xl md:text-4xl"
             >
-              How We Build
+              Systems Thinking Over Software Installation
             </motion.h2>
             <motion.p
               variants={fadeInUp}
               className="mb-12 max-w-2xl text-base leading-relaxed text-theme-muted sm:text-lg"
             >
-              We operate as an innovation studio—identifying opportunities,
-              prototyping solutions, and transforming them into market-ready
-              platforms.
+              Most CRM vendors deploy tools and move on. Lamrik Product Studio
+              architects operational infrastructure that evolves with your
+              business.
             </motion.p>
-            
+
             <motion.div
               variants={staggerContainer}
-              className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4"
+              className="grid gap-6 md:grid-cols-2"
             >
-              {pillars.map((pillar, i) => (
-                <motion.div key={i} variants={scaleIn}>
-                  <TiltCard className="h-full">
-                    <div className="card-base card-hover flex h-full flex-col p-6">
-                      <div className="icon-container mb-4">
-                        <pillar.icon className="h-5 w-5" />
-                      </div>
-                      <h3 className="mb-2 text-lg font-semibold text-theme-primary">
-                        {pillar.title}
-                      </h3>
-                      <p className="text-sm leading-relaxed text-theme-muted">
-                        {pillar.description}
-          </p>
-        </div>
-                  </TiltCard>
-                </motion.div>
-              ))}
+              {/* Most Vendors */}
+              <motion.div variants={fadeInLeft}>
+                <div className="comparison-column h-full">
+                  <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-theme-subtle">
+                    Most Vendors
+                  </p>
+                  <ul className="space-y-3">
+                    {[
+                      "Deploy tools",
+                      "Limited customization",
+                      "Short onboarding window",
+                      "Minimal post-launch support",
+                    ].map((item, i) => (
+                      <li
+                        key={i}
+                        className="flex items-center gap-3 text-sm text-theme-muted"
+                      >
+                        <Circle className="h-3 w-3 shrink-0 text-theme-subtle" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </motion.div>
+
+              {/* Lamrik Product Studio */}
+              <motion.div variants={fadeInRight}>
+                <div className="comparison-column highlighted h-full">
+                  <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-theme-gold">
+                    Lamrik Product Studio
+                  </p>
+                  <ul className="space-y-3">
+                    {[
+                      "Diagnose workflow & operational flow",
+                      "Architect customized systems",
+                      "Integrate AI automation layers",
+                      "Deploy unified infrastructure",
+                      "Optimize continuously",
+                    ].map((item, i) => (
+                      <li
+                        key={i}
+                        className="flex items-center gap-3 text-sm text-theme-primary"
+                      >
+                        <CheckCircle2 className="h-4 w-4 shrink-0 text-theme-gold" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </motion.div>
             </motion.div>
           </div>
         </AnimatedSection>
 
-        {/* Linkrcap Section */}
+        {/* ─── LinkrCap Section (Flagship Preservation) ────────────────────── */}
         <AnimatedSection id="linkrcap" className="px-4 py-20 sm:px-6 md:py-28">
           <div className="mx-auto grid max-w-[1200px] items-start gap-12 lg:grid-cols-2 lg:gap-16">
             <div>
@@ -580,25 +918,25 @@ export default function Home() {
                 <Rocket className="h-4 w-4" />
                 Flagship Platform
               </motion.div>
-              
+
               <motion.h2
                 variants={fadeInUp}
                 className="mb-4 text-2xl font-semibold text-theme-primary sm:text-3xl md:text-4xl"
               >
                 Linkrcap
               </motion.h2>
-              
+
               <motion.p
                 variants={fadeInUp}
                 className="mb-6 text-base leading-relaxed text-theme-muted sm:text-lg"
               >
-                Linkrcap transforms ideas into reality through innovation sprints,
-                prototype building, and structured incubation pathways. The platform
-                enables creators, builders, and emerging communities to test concepts,
-                validate demand, and accelerate launch timelines through guided digital
-                processes.
+                Linkrcap transforms ideas into reality through innovation
+                sprints, prototype building, and structured incubation pathways.
+                The platform enables creators, builders, and emerging communities
+                to test concepts, validate demand, and accelerate launch
+                timelines through guided digital processes.
               </motion.p>
-              
+
               <motion.ul
                 variants={staggerContainer}
                 className="mb-8 space-y-3 text-theme-muted"
@@ -620,9 +958,12 @@ export default function Home() {
                   </motion.li>
                 ))}
               </motion.ul>
-              
+
               <motion.div variants={fadeInUp}>
-                <MagneticButton href="https://www.linkrcap.com/" variant="secondary">
+                <MagneticButton
+                  href="https://www.linkrcap.com/"
+                  variant="secondary"
+                >
                   Explore Linkrcap
                   <ArrowUpRight className="h-4 w-4" />
                 </MagneticButton>
@@ -635,26 +976,32 @@ export default function Home() {
                   {[
                     {
                       step: "01",
-                      icon: Compass,
+                      icon: ClipboardList,
                       title: "Explore",
-                      description: "Identify and validate opportunities through guided discovery.",
+                      description:
+                        "Identify and validate opportunities through guided discovery.",
                     },
                     {
                       step: "02",
-                      icon: Lightbulb,
+                      icon: Puzzle,
                       title: "Prototype",
-                      description: "Build and iterate rapidly with structured sprint frameworks.",
+                      description:
+                        "Build and iterate rapidly with structured sprint frameworks.",
                     },
                     {
                       step: "03",
                       icon: Rocket,
                       title: "Launch",
-                      description: "Scale to market readiness with incubation support.",
+                      description:
+                        "Scale to market readiness with incubation support.",
                     },
                   ].map((item, i) => (
                     <div
                       key={i}
-                      className={`flex gap-4 ${i > 0 ? "border-t border-theme-primary pt-6" : ""} ${i < 2 ? "pb-6" : ""}`}
+                      className={`flex gap-4 ${i > 0
+                          ? "border-t border-theme-primary pt-6"
+                          : ""
+                        } ${i < 2 ? "pb-6" : ""}`}
                     >
                       <div className="icon-container shrink-0">
                         <item.icon className="h-5 w-5" />
@@ -666,7 +1013,9 @@ export default function Home() {
                         <h4 className="mb-1 text-lg font-semibold text-theme-primary">
                           {item.title}
                         </h4>
-                        <p className="text-sm text-theme-muted">{item.description}</p>
+                        <p className="text-sm text-theme-muted">
+                          {item.description}
+                        </p>
                       </div>
                     </div>
                   ))}
@@ -676,7 +1025,7 @@ export default function Home() {
           </div>
         </AnimatedSection>
 
-        {/* Vision Section */}
+        {/* ─── Vision Section ──────────────────────────────────────────────── */}
         <AnimatedSection
           id="vision"
           className="bg-theme-secondary px-4 py-20 sm:px-6 md:py-28"
@@ -698,27 +1047,28 @@ export default function Home() {
               variants={fadeInUp}
               className="mb-12 max-w-2xl text-base leading-relaxed text-theme-muted sm:text-lg"
             >
-              Lamrik Labs is in active exploration of new digital ecosystems across
-              emerging technologies. Our pipeline focuses on long-term product
-              ownership — not trend-driven experiments.
+              Lamrik Labs is in active exploration of new digital ecosystems
+              across emerging technologies. Our pipeline focuses on long-term
+              product ownership — not trend-driven experiments.
             </motion.p>
-            
+
             <div className="grid gap-8 lg:grid-cols-[2fr_3fr] lg:gap-12">
               <motion.div
                 variants={fadeInUp}
                 className="space-y-4 text-sm leading-relaxed text-theme-muted sm:text-base"
               >
                 <p>
-                  We believe the next wave of transformative digital products will
-                  emerge at the intersection of community infrastructure, creator
-                  tools, and intelligent automation.
+                  We believe the next wave of transformative digital products
+                  will emerge at the intersection of community infrastructure,
+                  creator tools, and intelligent automation.
                 </p>
                 <p>
-                  Our investment thesis centers on platforms that compound value over
-                  time—building moats through network effects and user ownership.
+                  Our investment thesis centers on platforms that compound value
+                  over time — building moats through network effects and user
+                  ownership.
                 </p>
               </motion.div>
-              
+
               <motion.div
                 variants={staggerContainer}
                 className="grid gap-4 sm:grid-cols-2"
@@ -742,187 +1092,95 @@ export default function Home() {
           </div>
         </AnimatedSection>
 
-        {/* Partner Section */}
-        <AnimatedSection id="partner" className="px-4 py-20 sm:px-6 md:py-28">
-          <div className="mx-auto max-w-[1200px] text-center">
-            <motion.p
-              variants={fadeInUp}
-              className="mb-2 text-xs uppercase tracking-[0.2em] text-theme-muted"
-            >
-              Partnerships &amp; Collaborations
-            </motion.p>
+        {/* ─── SECTION 7: Deployment Framework ─────────────────────────────── */}
+        <AnimatedSection
+          id="deployment"
+          className="px-4 py-20 sm:px-6 md:py-28"
+        >
+          <div className="mx-auto max-w-[1000px]">
+            <div className="grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:gap-16">
+              <div>
+                <motion.p
+                  variants={fadeInUp}
+                  className="mb-2 text-xs uppercase tracking-[0.2em] text-theme-muted"
+                >
+                  Deployment Framework
+                </motion.p>
+                <motion.h2
+                  variants={fadeInUp}
+                  className="mb-4 text-2xl font-semibold text-theme-primary sm:text-3xl md:text-4xl"
+                >
+                  Structured Implementation
+                </motion.h2>
+                <motion.p
+                  variants={fadeInUp}
+                  className="mb-6 text-base leading-relaxed text-theme-muted sm:text-lg"
+                >
+                  Every Lamrik Business OS™ deployment follows a structured
+                  four-phase framework to ensure seamless integration and
+                  measurable outcomes.
+                </motion.p>
+                <motion.p
+                  variants={fadeInUp}
+                  className="text-xs text-theme-subtle"
+                >
+                  Deployment cycles are limited to ensure quality
+                  implementation.
+                </motion.p>
+              </div>
+
+              <motion.div variants={fadeInRight}>
+                <div className="deployment-stepper">
+                  {deploymentPhases.map((phase, i) => (
+                    <div key={i} className="stepper-step">
+                      <div className="stepper-dot" />
+                      <p className="stepper-number">{phase.phase}</p>
+                      <h4 className="mb-1 text-lg font-semibold text-theme-primary">
+                        {phase.title}
+                      </h4>
+                      <p className="text-sm leading-relaxed text-theme-muted">
+                        {phase.description}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </AnimatedSection>
+
+        {/* ─── SECTION 8: Final CTA ────────────────────────────────────────── */}
+        <AnimatedSection
+          id="cta"
+          className="bg-theme-secondary px-4 py-20 sm:px-6 md:py-28"
+        >
+          <div className="mx-auto max-w-[700px] text-center">
             <motion.h2
               variants={fadeInUp}
               className="mb-4 text-2xl font-semibold text-theme-primary sm:text-3xl md:text-4xl"
             >
-              Partner with Lamrik Labs
+              Build a Controlled, Intelligent Revenue Infrastructure
             </motion.h2>
             <motion.p
               variants={fadeInUp}
-              className="mx-auto mb-6 max-w-2xl text-base leading-relaxed text-theme-muted sm:text-lg"
+              className="mb-8 text-base leading-relaxed text-theme-muted sm:text-lg"
             >
-              We engage with forward-thinking partners, institutions, and innovators
-              to build enduring digital ecosystems. If your organization is exploring
-              strategic collaboration, incubation, or investment opportunities, we
-              would be glad to connect.
+              For businesses serious about structured growth.
             </motion.p>
-            
-            <motion.a
+            <motion.div
               variants={fadeInUp}
-              href="mailto:contact@lamrik.com"
-              className="mb-10 inline-flex items-center gap-2 text-lg font-medium text-theme-gold transition-colors hover:text-theme-primary sm:text-xl"
+              className="flex flex-col items-center gap-4"
             >
-              <Mail className="h-5 w-5" />
-              contact@lamrik.com
-            </motion.a>
-
-            {/* Contact Form */}
-            <motion.form
-              variants={scaleIn}
-              onSubmit={handleSubmit}
-              className="mx-auto mt-8 max-w-xl"
-            >
-              <TiltCard>
-                <div className="card-base p-6 text-left md:p-8">
-                  {formState === "success" ? (
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      className="flex flex-col items-center py-8 text-center"
-                    >
-                      <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-green-500/10">
-                        <CheckCircle className="h-8 w-8 text-green-500" />
-                      </div>
-                      <h3 className="mb-2 text-xl font-semibold text-theme-primary">
-                        Message Sent Successfully
-                      </h3>
-                      <p className="text-theme-muted">
-                        Thank you for reaching out. We&apos;ll get back to you soon.
-                      </p>
-                    </motion.div>
-                  ) : formState === "error" ? (
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      className="flex flex-col items-center py-8 text-center"
-                    >
-                      <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-red-500/10">
-                        <AlertCircle className="h-8 w-8 text-red-500" />
-                      </div>
-                      <h3 className="mb-2 text-xl font-semibold text-theme-primary">
-                        Something Went Wrong
-                      </h3>
-                      <p className="text-theme-muted">
-                        Please try again or email us directly at contact@lamrik.com
-                      </p>
-                    </motion.div>
-                  ) : (
-                    <>
-                      <div className="mb-6 grid gap-4 sm:grid-cols-2">
-                        <div>
-                          <label
-                            htmlFor="name"
-                            className="mb-2 block text-xs uppercase tracking-widest text-theme-muted"
-                          >
-                            Name
-                          </label>
-                          <input
-                            type="text"
-                            id="name"
-                            name="name"
-                            required
-                            value={formData.name}
-                            onChange={(e) =>
-                              setFormData({ ...formData, name: e.target.value })
-                            }
-                            className="input-base"
-                            placeholder="Your name"
-                            disabled={formState === "submitting"}
-                          />
-                        </div>
-                        <div>
-                          <label
-                            htmlFor="organization"
-                            className="mb-2 block text-xs uppercase tracking-widest text-theme-muted"
-                          >
-                            Organization
-                          </label>
-                          <input
-                            type="text"
-                            id="organization"
-                            name="organization"
-                            value={formData.organization}
-                            onChange={(e) =>
-                              setFormData({ ...formData, organization: e.target.value })
-                            }
-                            className="input-base"
-                            placeholder="Company or institution"
-                            disabled={formState === "submitting"}
-                          />
-                        </div>
-                      </div>
-                      <div className="mb-4">
-                        <label
-                          htmlFor="email"
-                          className="mb-2 block text-xs uppercase tracking-widest text-theme-muted"
-                        >
-                          Email
-                        </label>
-                        <input
-                          type="email"
-                          id="email"
-                          name="email"
-                          required
-                          value={formData.email}
-                          onChange={(e) =>
-                            setFormData({ ...formData, email: e.target.value })
-                          }
-                          className="input-base"
-                          placeholder="you@example.com"
-                          disabled={formState === "submitting"}
-                        />
-                      </div>
-                      <div className="mb-6">
-                        <label
-                          htmlFor="message"
-                          className="mb-2 block text-xs uppercase tracking-widest text-theme-muted"
-                        >
-                          Message
-                        </label>
-                        <textarea
-                          id="message"
-                          name="message"
-                          rows={4}
-                          required
-                          value={formData.message}
-                          onChange={(e) =>
-                            setFormData({ ...formData, message: e.target.value })
-                          }
-                          className="input-base resize-none"
-                          placeholder="Tell us about your collaboration interest"
-                          disabled={formState === "submitting"}
-                        />
-                      </div>
-                      <button
-                        type="submit"
-                        disabled={formState === "submitting"}
-                        className="btn-primary flex w-full items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-medium transition-all disabled:opacity-70"
-                      >
-                        {formState === "submitting" ? (
-                          <>
-                            <Loader2 className="h-4 w-4 animate-spin" />
-                            Sending...
-                          </>
-                        ) : (
-                          "Send Message"
-                        )}
-                      </button>
-                    </>
-                  )}
-                </div>
-              </TiltCard>
-            </motion.form>
-        </div>
+              <MagneticButton href="mailto:contact@lamrik.com" variant="primary">
+                Book Executive Consultation
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </MagneticButton>
+              <p className="text-xs text-theme-subtle">
+                Enterprise-grade deployment. Limited onboarding capacity per
+                quarter.
+              </p>
+            </motion.div>
+          </div>
         </AnimatedSection>
       </main>
 
