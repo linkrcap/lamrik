@@ -150,6 +150,7 @@ const navLinks = [
   { href: "#modules", label: "Modules" },
   { href: "#industries", label: "Industries" },
   { href: "#linkrcap", label: "Linkrcap" },
+  { href: "https://business.lamrik.com", label: "Business OS" },
   { href: "#deployment", label: "Deployment" },
 ];
 
@@ -1025,10 +1026,90 @@ export default function Home() {
           </div>
         </AnimatedSection>
 
+        {/* ─── SECTION X: Business OS ───────────────────────────────────────── */}
+        <AnimatedSection
+          id="business-os"
+          className="bg-theme-secondary px-4 py-20 sm:px-6 md:py-28"
+        >
+          <div className="mx-auto max-w-[1200px]">
+            <div className="grid items-start gap-12 lg:grid-cols-2 lg:gap-16">
+              <div>
+                <motion.div variants={fadeInUp} className="badge-gold mb-4">
+                  <Layers className="h-4 w-4" />
+                  Product Studio Expansion
+                </motion.div>
+
+                <motion.h2
+                  variants={fadeInUp}
+                  className="mb-4 text-2xl font-semibold text-theme-primary sm:text-3xl md:text-4xl"
+                >
+                  <AnimatedHeadline text="Lamrik Business Operating System™" />
+                </motion.h2>
+
+                <motion.p
+                  variants={fadeInUp}
+                  className="mb-4 text-base font-medium text-theme-primary sm:text-lg"
+                >
+                  AI-Powered Operational Infrastructure for Growth-Focused Enterprises
+                </motion.p>
+                <motion.p
+                  variants={fadeInUp}
+                  className="mb-6 text-base leading-relaxed text-theme-muted sm:text-lg"
+                >
+                  As businesses scale, operational complexity increases. Lamrik Business OS™ unifies CRM, lead capture, WhatsApp automation, AI voice agents, and performance analytics into a structured system designed for clarity and control.
+                </motion.p>
+
+                <motion.p
+                  variants={fadeInUp}
+                  className="mb-8 text-sm italic text-theme-subtle"
+                >
+                  Engineered by the team behind LinkrCap, it extends Lamrik’s systems expertise into multi-industry business infrastructure.
+                </motion.p>
+
+                <motion.div variants={fadeInUp}>
+                  <MagneticButton
+                    href="https://business.lamrik.com"
+                    variant="primary"
+                  >
+                    Explore Business OS
+                    <ArrowRight className="h-4 w-4 ml-1 transition-transform group-hover:translate-x-1" />
+                  </MagneticButton>
+                </motion.div>
+              </div>
+
+              <motion.div variants={fadeInRight}>
+                <TiltCard>
+                  <div className="card-base card-hover p-6 md:p-8">
+                    <motion.ul variants={staggerContainer} className="space-y-4">
+                      {[
+                        { icon: Cpu, label: "Centralized Lead Capture" },
+                        { icon: Search, label: "Structured CRM Architecture" },
+                        { icon: MessageSquare, label: "WhatsApp Automation" },
+                        { icon: Phone, label: "AI Voice Systems" },
+                        { icon: BarChart3, label: "Revenue Analytics" },
+                        { icon: Shield, label: "Enterprise-Grade Security" },
+                      ].map((item, i) => (
+                        <motion.li key={i} variants={fadeInUp} className="flex items-center gap-4">
+                          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[var(--accent-gold-light)]">
+                            <item.icon className="h-5 w-5 text-theme-gold" />
+                          </div>
+                          <span className="text-sm font-medium text-theme-primary sm:text-base">
+                            {item.label}
+                          </span>
+                        </motion.li>
+                      ))}
+                    </motion.ul>
+                  </div>
+                </TiltCard>
+              </motion.div>
+            </div>
+          </div>
+        </AnimatedSection>
+
         {/* ─── Vision Section ──────────────────────────────────────────────── */}
         <AnimatedSection
           id="vision"
-          className="bg-theme-secondary px-4 py-20 sm:px-6 md:py-28"
+          className="px-4 py-20 sm:px-6 md:py-28"
         >
           <div className="mx-auto max-w-[1000px]">
             <motion.p
@@ -1095,7 +1176,7 @@ export default function Home() {
         {/* ─── SECTION 7: Deployment Framework ─────────────────────────────── */}
         <AnimatedSection
           id="deployment"
-          className="px-4 py-20 sm:px-6 md:py-28"
+          className="bg-theme-secondary px-4 py-20 sm:px-6 md:py-28"
         >
           <div className="mx-auto max-w-[1000px]">
             <div className="grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:gap-16">
@@ -1152,7 +1233,7 @@ export default function Home() {
         {/* ─── SECTION 8: Final CTA ────────────────────────────────────────── */}
         <AnimatedSection
           id="cta"
-          className="bg-theme-secondary px-4 py-20 sm:px-6 md:py-28"
+          className="px-4 py-20 sm:px-6 md:py-28"
         >
           <div className="mx-auto max-w-[700px] text-center">
             <motion.h2
