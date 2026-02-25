@@ -150,7 +150,7 @@ const navLinks = [
   { href: "#modules", label: "Modules" },
   { href: "#industries", label: "Industries" },
   { href: "#linkrcap", label: "Linkrcap" },
-  { href: "https://business.lamrik.com", label: "Business OS" },
+  { href: "https://www.business.lamrik.com", label: "Business OS" },
   { href: "#deployment", label: "Deployment" },
 ];
 
@@ -397,8 +397,8 @@ export default function Home() {
       {/* ─── Header ────────────────────────────────────────────────────────── */}
       <header
         className={`sticky top-0 z-50 border-b transition-all duration-300 ${isScrolled
-            ? "header-blur border-theme-primary shadow-lg"
-            : "border-transparent bg-transparent"
+          ? "header-blur border-theme-primary shadow-lg"
+          : "border-transparent bg-transparent"
           }`}
       >
         <div className="mx-auto flex h-16 max-w-[1200px] items-center justify-between px-4 sm:px-6 lg:h-20">
@@ -1000,8 +1000,8 @@ export default function Home() {
                     <div
                       key={i}
                       className={`flex gap-4 ${i > 0
-                          ? "border-t border-theme-primary pt-6"
-                          : ""
+                        ? "border-t border-theme-primary pt-6"
+                        : ""
                         } ${i < 2 ? "pb-6" : ""}`}
                     >
                       <div className="icon-container shrink-0">
@@ -1068,7 +1068,7 @@ export default function Home() {
 
                 <motion.div variants={fadeInUp}>
                   <MagneticButton
-                    href="https://business.lamrik.com"
+                    href="https://www.business.lamrik.com"
                     variant="primary"
                   >
                     Explore Business OS
